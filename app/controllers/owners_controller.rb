@@ -35,4 +35,8 @@ class OwnersController < ApplicationController
         end
     end
 
+    get '/owners/index' do
+        erb :'/owners/index'
+    end
+
 end
