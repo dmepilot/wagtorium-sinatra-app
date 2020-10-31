@@ -20,12 +20,15 @@ ActiveRecord::Schema.define(version: 20201030224836) do
 
   create_table "dogs", force: :cascade do |t|
     t.string  "name"
+    t.string  "breed"
+    t.string  "special_notes"
     t.integer "owner_id"
   end
 
   create_table "owners", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.string "phone"
     t.string "password_digest"
   end
 
