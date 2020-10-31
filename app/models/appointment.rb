@@ -1,4 +1,4 @@
 class Appointment < ActiveRecord::Base
-    has_many :owner_appointments
-    has_many :dogs, through: :owner_appointments
+    belongs_to :owner
+    has_one :dog, through: :owner 
 end
