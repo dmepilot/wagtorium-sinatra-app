@@ -3,7 +3,7 @@
 class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   enable :sessions
-  set :session_secret, "my_application_secret"
+  set :session_secret, "demo_test"
   set :views, Proc.new { File.join(root, "../views/") }
 
   # configure do
@@ -12,7 +12,19 @@ class ApplicationController < Sinatra::Base
   # end
 
   get "/" do
-    erb :welcome
+    erb :index
+  end
+
+  helpers do
+
+    def logged_in?
+      !!current_owner
+    end
+
+    def current_owner
+      @current_owner ||= Owner.find_by(id: session[:owner_id]) if session[:owner_id]
+    end
+
   end
 
 end
