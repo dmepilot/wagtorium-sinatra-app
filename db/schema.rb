@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20201030224836) do
   create_table "appointments", force: :cascade do |t|
     t.string  "date_time"
     t.integer "owner_id"
+    t.integer "dog_id"
   end
 
   create_table "dogs", force: :cascade do |t|

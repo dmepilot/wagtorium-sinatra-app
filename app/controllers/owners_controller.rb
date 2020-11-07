@@ -8,7 +8,9 @@ class OwnersController < ApplicationController
         owner=Owner.find_by(:email => params[:email])
         if owner && owner.authenticate(params[:password])
             session[:owner_id]=owner.id
-            redirect '/owners/index'
+            # redirect '/owners/index'
+            redirect to("/owners/#{owner.slug}")
+
         else
             redirect to("/login")
         end
@@ -23,7 +25,8 @@ class OwnersController < ApplicationController
         owner.save
         session[:owner_id]=owner.id
         # binding.pry
-        erb :'/owners/index'
+        # erb :'/owners/index'
+        redirect to("/owners/#{owner.slug}")
     end
 
     get '/logout' do
@@ -37,6 +40,25 @@ class OwnersController < ApplicationController
 
     get '/owners/index' do
         erb :'/owners/index'
+        # binding.pry
+    end
+
+    get '/owners/:slug' do
+        @owner = Owner.find_by_slug(params[:slug])
+        erb :'/owners/show'
+    end
+
+    get '/owners/:slug/edit' do
+        @owner=Owner.find_by_slug(params[:slug])
+        erb :'/owners/edit'
+    end
+
+    patch '/owners/:slug' do
+        @owner = Owner.find_by_slug(params[:slug])
+        @owner.update(params[:owner])
+        @owner.dog_ids = params[:dogs]
+        @owner.save
+        redirect("/owners/#{@owner.slug}")
     end
 
 end

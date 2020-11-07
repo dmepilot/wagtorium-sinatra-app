@@ -1,0 +1,16 @@
+<h1>Schedule a New Grooming Appointment!</h1>
+<h2>Select from the following times:</h2>
+<form action="/appointments" method="POST">
+<%Appointment.all.each do |a|%>
+<%if a.owner_id == nil%>
+<input type="checkbox" name="appointment" value="<%=a.id%>"><%=a.date_time%><br>
+<%end%>
+<%end%>
+<label for="dog">Select Dog:</label>
+<%current_owner.dogs.each do |d| %>
+<input type="radio" name="dog" value="<%=d.id%>"><%=d.name%>
+<%end%>
+<br>
+<button type="submit">Schedule Grooming!</button>
+</form>
+

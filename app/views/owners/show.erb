@@ -1,0 +1,38 @@
+<style>
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+    
+
+<h1>Owner Show Page</h1>
+
+<h1>Welcome, <%=current_owner.name%> !</h1>
+<br>
+<h2>Your upcoming appointments:</h2>
+ <%current_owner.appointments.each do |a|%>
+ <ul>
+ <li><%=a.date_time%> for: <%=a.dog.name%>  <button><a href="/appointments/edit">EDIT</a></button></li>
+ </ul>
+ <%end%>
+ <br>
+ <h2>Your Dogs:</h2><br>
+ <%current_owner.dogs.each do |d|%>
+ <ul>
+ <li><%=d.name%>  <button><a href="/appointments">MAKE NEW APPOINTMENT</a></button></li> 
+ <%end%>
+ </ul>
+<br>
+<button><a href="/owners/<%="#{current_owner.slug}"%>/edit">Update Personal Info</a></button>
+<br>
+<br>
+<a href="/logout" class="button">LOGOUT</a>

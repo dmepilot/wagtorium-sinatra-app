@@ -1,0 +1,17 @@
+<form action="/owners/<%=current_owner.slug%>" method="POST">
+<input type="hidden" name="_method" value="PATCH">
+<label for="name" >Name:</label>
+<input type="text" value ="<%=current_owner.name%>" name="owner[name]"><br>
+<label for="email" >Email:</label>
+<input type="text" name="owner[email]" value ="<%=current_owner.email%>"><br>
+<label for="phone">Phone Number:</label>
+<input type="text" name="owner[phone]" value ="<%=current_owner.phone%>"><br>
+<label for="password">Password:</label>
+<input type="password" name="owner[password]" value ="<%=current_owner.password%>"><br>
+<br>
+<%current_owner.dogs.each do |dog|%>
+<input type="checkbox" name="dogs[]" value="<%=dog.id%>" <%="checked" if current_owner.dogs.include?(dog) %>><%=dog.name%><br>
+<%end%>
+<a href="/dogs/new">Add New Dog</a><br><br>
+<button type="submit" name="submit">Update</button>
+</form>
