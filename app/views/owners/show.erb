@@ -1,8 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/body.css" />
 
-<div class="navbar">
-  <a href="/owners/<%="#{current_owner.slug}"%>">HOME</a>
-</div>
 
 <h1>Owner Show Page</h1>
 
@@ -11,18 +8,22 @@
 <h2>Your upcoming appointments:</h2>
  <%current_owner.appointments.each do |a|%>
  <ul>
- <li><%=a.date_time%> for: <%=a.dog.name%>  <button><a href="/appointments/edit">EDIT</a></button></li>
+ <li><%=a.date_time%> for: <%=a.dog.name%>  <button class="button-2"><a href="/appointments/edit">EDIT</a></button></li>
  </ul>
  <%end%>
  <br>
  <h2>Your Dogs:</h2><br>
  <%current_owner.dogs.each do |d|%>
  <ul>
- <li><%=d.name%>  <button><a href="/appointments">MAKE NEW APPOINTMENT</a></button></li> 
+ <li><strong><%=d.name%></strong>  </li> 
+ <p>NOTES: <%=d.special_notes%></p>
  <%end%>
  </ul>
 <br>
-<button><a href="/owners/<%="#{current_owner.slug}"%>/edit">Update Personal Info</a></button>
+<h2></h2>
+<button class="button-2"><a href="/owners/<%="#{current_owner.slug}"%>/edit">Update Profile Info</a></button>
 <br>
 <br>
-<a href="/logout" class="button">LOGOUT</a>
+<%if current_owner.name == "Wagtorium Manager"%>
+<button class="button-3"><a href="/appointments/new">MANAGER CREATE NEW APPOINTMENTS!</a></button>
+<%end%>

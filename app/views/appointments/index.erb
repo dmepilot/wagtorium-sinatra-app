@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/stylesheets/body.css" />
+
 <h1>Schedule a New Grooming Appointment!</h1>
 <h2>Select from the following times:</h2>
 <form action="/appointments" method="POST">
@@ -11,5 +13,5 @@
 <input type="radio" name="dog" value="<%=d.id%>"><%=d.name%>
 <%end%>
 <br>
-<button type="submit">Schedule Grooming!</button>
+<button type="submit" class="button-2">Schedule Grooming!</button>
 </form>

@@ -5,12 +5,16 @@ class AppointmentsController < ApplicationController
    end
 
    post "/appointments" do
-        
+        if params[:appointment] != nil && params[:dog] != nil
         appt=Appointment.find_by(:id => params[:appointment])
         appt.owner_id = current_owner.id
         appt.dog_id = params[:dog]
         appt.save
         # binding.pry
+        redirect "/owners/#{current_owner.slug}"
+        else
+        redirect "/appointments"
+        end
    end
    
     get "/appointments/new" do

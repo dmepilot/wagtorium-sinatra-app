@@ -14,7 +14,18 @@ a<!DOCTYPE html>
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-    <div class="wrapper">
+
+    <div class="navbar">
+    <%if logged_in?%>
+      <a href="/owners/<%="#{current_owner.slug}"%>" class ="button">HOME</a>
+      <a href="/appointments" class="button">Make Appointment!</a>
+      <a href="/logout" class="button" >LOGOUT</a>
+    <%end%>
+    </div>
+
+
+      <div class="wrapper">
+
         <%= yield %>
 
       <footer class="branding">
