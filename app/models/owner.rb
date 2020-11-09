@@ -4,6 +4,8 @@ class Owner < ActiveRecord::Base
 
     has_secure_password
 
+    validates :name, :email, :phone, presence: true 
+
     
     def slug
         self.name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
