@@ -12,8 +12,9 @@
 <input type="password" name="owner[password]" value ="<%=current_owner.password%>"><br>
 <br>
 <%current_owner.dogs.each do |dog|%>
-<input type="checkbox" name="dogs[]" value="<%=dog.id%>" <%="checked" if current_owner.dogs.include?(dog) %>><%=dog.name%><br>
+<input type="checkbox" name="dogs[]" value="<%=dog.id%>" <%="checked" if current_owner.dogs.include?(dog) %>><%=dog.name%><button class="button-2"><a href="/dogs/<%="#{dog.slug}"%>/edit">Edit</a></button>
+<br>
 <%end%>
-<a href="/dogs/new">Add New Dog</a><br><br>
+<button class="button-2"><a href="/dogs/new">Add New Dog</a></button><br><br>
 <button type="submit" name="submit" class="button-2">Update</button>
 </form>

@@ -20,10 +20,14 @@ class OwnersController < ApplicationController
     end
 
     post '/signup' do
-        owner=Owner.new(:name => params[:name], :email => params[:email], :phone => params[:phone], :password => params[:password])
-        if owner.save
-          session[:owner_id]=owner.id
-          redirect to("/owners/#{owner.slug}")
+        unless Owner.find_by(:email => params[:email])
+          owner=Owner.new(:name => params[:name], :email => params[:email], :phone => params[:phone], :password => params[:password])
+          if owner.save 
+            session[:owner_id]=owner.id
+            redirect to("/owners/#{owner.slug}")
+          else
+            redirect to "/signup"
+         end
         else
           redirect to "/signup"
         end

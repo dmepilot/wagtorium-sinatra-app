@@ -1,1 +1,22 @@
 <link rel="stylesheet" href="/stylesheets/body.css" />
+
+<h3>Edit <%=@dog.name%></h3>
+
+<form action="/dogs/<%=@dog.slug%>" method="post">
+<input type="hidden" name="_method" value="PATCH">
+<label for="dog[name]">Dog's Name:</label>
+<input type="text" name="dog[name]" value="<%=@dog.name%>"><br>
+<label for="dog[breed]">Breed:</label>
+<input type="text" name="dog[breed]" value="<%=@dog.breed%>"><br>
+<label for="dog[special_notes]">Special Notes:</label><br>
+<textarea name="dog[special_notes]" rows="6" cols="80"><%=@dog.special_notes%> </textarea><br>
+
+<button type="submit" class="button-2">SUBMIT</button>
+<h3>OR</h3><br>
+
+<form action="/dogs/<%= @dog.slug %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" class="button-2" value="Delete This Record">
+</form>
+
+</form>
