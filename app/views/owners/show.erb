@@ -8,7 +8,13 @@
 <h2>Your upcoming appointments:</h2>
  <%current_owner.appointments.each do |a|%>
  <ul>
- <li><%=a.date_time%> for: <%=a.dog.name%>  <button class="button-2"><a href="/appointments/edit">EDIT</a></button></li>
+ <li>
+  <form action="/appointments/edit" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="appointment"> <%=a.date_time%> for: <%=a.dog.name%></label>
+  <button type="submit" class="button-2" value="<%=a.id%>" name="appointment">CANCEL</button>
+  </form>
+   </li>
  </ul>
  <%end%>
  <br>

@@ -36,6 +36,15 @@ class AppointmentsController < ApplicationController
         redirect "/appointments/new"
     end
 
+
+    patch "/appointments/edit" do
+        appt=Appointment.find_by(:id => params[:appointment])
+        appt.owner_id=nil
+        appt.dog_id=nil
+        appt.save
+        redirect("/owners/#{current_owner.slug}")
+    end
+
     def convert_month(month)
         if month == "01"
             "January"
