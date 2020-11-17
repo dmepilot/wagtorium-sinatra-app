@@ -5,11 +5,7 @@ class ApplicationController < Sinatra::Base
   enable :sessions
   set :session_secret, "demo_test"
   set :views, Proc.new { File.join(root, "../views/") }
-
-  # configure do
-  #   set :public_folder, 'public'
-  #   set :views, 'app/views'
-  # end
+  register Sinatra::Flash
 
   get "/" do
     erb :index

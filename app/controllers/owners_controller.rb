@@ -1,6 +1,7 @@
 class OwnersController < ApplicationController
 
     get '/login' do
+        # binding.pry
         erb :'/owners/login'
     end
 
@@ -8,9 +9,11 @@ class OwnersController < ApplicationController
         owner=Owner.find_by(:email => params[:email])
         if owner && owner.authenticate(params[:password])
             session[:owner_id]=owner.id
+            flash[:success]="Successfully signed in as #{owner.name}."
             redirect to("/owners/#{owner.slug}")
 
         else
+            flash[:error]="Invalid Login" 
             redirect to("/login")
         end
     end

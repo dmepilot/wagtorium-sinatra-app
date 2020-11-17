@@ -33,6 +33,7 @@ class AppointmentsController < ApplicationController
         new_appt=Appointment.new(:date_time => "#{convert_month(month)} #{day}, #{year} at #{time}")
         new_appt.save
         #binding.pry
+        flash[:new_appt]="Successfully created new appointment on #{new_appt.date_time}."
         redirect "/appointments/new"
     end
 

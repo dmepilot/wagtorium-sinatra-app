@@ -1,8 +1,11 @@
+<%if flash[:new_appt]%>
+<h3 style="color:red;"><%=flash[:new_appt]%></h3>
+<%end%>
 
 <h1>Hello, <%=current_owner.name%>.  Enter new appoinments here:</h1>
 <form action="/appointments/new" method="POST">
 <input type="datetime-local" name="appointments[date_time]"><br>
-<button type="submit" class="button-2">Add New Appointment Time:</button>
+<button type="submit" class="button-2">Add New Appointment Time</button>
 </form>
 <br>
 <button class="button-2"><a href="/owners/<%=current_owner.slug%>">Return to Main Screen</a></button>
