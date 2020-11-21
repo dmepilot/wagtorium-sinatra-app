@@ -1,12 +1,19 @@
+<%if flash[:incomplete]%>
+<h3 style="color:red;"><%=flash[:incomplete]%></h3>
+<%end%>
+<%if flash[:taken]%>
+<h3 style="color:red;"><%=flash[:taken]%></h3>
+<%end%>
+
 
 <form action="/signup" method="POST">
 <label for="name" >Name:</label>
-<input type="text" name="name"><br>
+<input type="text" name="name" required><br>
 <label for="email" >Email:</label>
-<input type="text" name="email"><br>
+<input type="email" name="email" required><br>
 <label for="phone">Phone Number:</label>
-<input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"><br>
+<input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><i> format: xxx-xxx-xxxx</i><br> 
 <label for="password">Password:</label>
-<input type="password" name="password"><br>
+<input type="password" name="password" required><br>
 <button type="submit" name="submit" class="button-2">Sign Up!</button>
 </form>

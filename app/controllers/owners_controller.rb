@@ -19,19 +19,25 @@ class OwnersController < ApplicationController
     end
 
     get '/signup' do
-        erb :'/owners/signup'
+        if !logged_in?
+            erb :'/owners/signup'
+        else
+            redirect to("/owners/#{current_owner.slug}")
+        end
     end
 
     post '/signup' do
-        unless Owner.find_by(:email => params[:email])
+        unless Owner.find_by(:email => params[:email]) || Owner.find_by(:name => params[:name])
           owner=Owner.new(:name => params[:name], :email => params[:email], :phone => params[:phone], :password => params[:password])
           if owner.save 
             session[:owner_id]=owner.id
             redirect to("/owners/#{owner.slug}")
           else
+            flash[:incomplete]="Please fill in all fields" 
             redirect to "/signup"
          end
         else
+          flash[:taken]="Username or Email already in use" 
           redirect to "/signup"
         end
     end

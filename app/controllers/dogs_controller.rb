@@ -11,20 +11,20 @@ class DogsController < ApplicationController
         erb :'/owners/show'
     end
 
-    get '/dogs/:slug/edit' do
-        @dog=Dog.find_by_slug(params[:slug])
+    get '/dogs/:id/edit' do
+        @dog=Dog.find_by_id(params[:id])
         erb :'/dogs/edit'
     end
 
-    patch '/dogs/:slug' do
-        @dog = Dog.find_by_slug(params[:slug])
+    patch '/dogs/:id' do
+        @dog = Dog.find_by_id(params[:id])
         @dog.update(params[:dog])
         @dog.save
-        redirect("/dogs/#{@dog.slug}")
+        redirect("/dogs/#{@dog.id}")
     end
-
-    delete '/dogs/:slug' do
-        @dog = Dog.find_by_slug(params[:slug])
+    
+    delete '/dogs/:id' do
+        @dog = Dog.find_by_id(params[:id])
         current_owner.appointments.each do |a|
             if a.dog_id == @dog.id
                 a.owner_id=nil

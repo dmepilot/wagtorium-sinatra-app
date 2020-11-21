@@ -1,7 +1,7 @@
 
 <h3>Edit <%=@dog.name%></h3>
 
-<form action="/dogs/<%=@dog.slug%>" method="post">
+<form action="/dogs/<%=@dog.id%>" method="post">
 <input type="hidden" name="_method" value="PATCH">
 <label for="dog[name]">Dog's Name:</label>
 <input type="text" name="dog[name]" value="<%=@dog.name%>"><br>
@@ -13,7 +13,7 @@
 <button type="submit" class="button-2">SUBMIT</button>
 <h3>OR</h3><br>
 
-<form action="/dogs/<%= @dog.slug %>" method="post">
+<form action="/dogs/<%= @dog.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" class="button-2" value="Delete This Record">
 </form>

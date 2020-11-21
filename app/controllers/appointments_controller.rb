@@ -1,6 +1,8 @@
+
 class AppointmentsController < ApplicationController
     
-   get "/appointments" do
+
+    get "/appointments" do
         erb :'/appointments/index'
    end
 
