@@ -2,7 +2,16 @@ class Appointment < ActiveRecord::Base
     belongs_to :owner
     belongs_to :dog
 
-    def convert_month(month)
+    def self.convert_date_time(date_time)
+        year=date_time.split(/[\-, \T]/)[0]
+        month=date_time.split(/[\-, \T]/)[1]
+        day=date_time.split(/[\-, \T]/)[2]
+        time=date_time.split(/[\-, \T]/)[3]
+        new_appt="#{Appointment.convert_month(month)} #{day}, #{year} at #{time}"
+        new_appt
+    end
+
+    def self.convert_month(month)
         if month == "01"
             "January"
         elsif month =="02"

@@ -28,18 +28,15 @@ class AppointmentsController < ApplicationController
     end
 
     post "/appointments/new" do
-        year=params[:appointments][:date_time].split(/[\-, \T]/)[0]
-        month=params[:appointments][:date_time].split(/[\-, \T]/)[1]
-        day=params[:appointments][:date_time].split(/[\-, \T]/)[2]
-        time=params[:appointments][:date_time].split(/[\-, \T]/)[3]
-        new_appt=Appointment.new(:date_time => "#{convert_month(month)} #{day}, #{year} at #{time}")
+        date=Appointment.convert_date_time(params[:appointments][:date_time])
+        new_appt=Appointment.new(:date_time => "#{date}")
         new_appt.save
         #binding.pry
         flash[:new_appt]="Successfully created new appointment on #{new_appt.date_time}."
         redirect "/appointments/new"
     end
-
-
+  
+  
     patch "/appointments/edit" do
         appt=Appointment.find_by(:id => params[:appointment])
         appt.owner_id=nil
@@ -48,31 +45,4 @@ class AppointmentsController < ApplicationController
         redirect("/owners/#{current_owner.slug}")
     end
 
-    def convert_month(month)
-        if month == "01"
-            "January"
-        elsif month =="02"
-            "Febraury"
-        elsif month =="03"
-            "March"
-        elsif month =="04"
-            "April"
-        elsif month =="05"
-            "May"
-        elsif month == "06"
-            "June"
-        elsif month == "07"
-            "July"
-        elsif month == "08"
-            "August" 
-        elsif month == "09"
-            "September" 
-        elsif month == "10"
-            "October"
-        elsif month =="11"
-            "November"
-        elsif month =="12"
-            "December"
-        end 
-    end
 end
