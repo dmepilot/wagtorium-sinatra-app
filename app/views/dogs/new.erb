@@ -1,6 +1,8 @@
 
 <h1>Add a new dog to your profile:</h1>
-
+<%if flash[:incomplete]%>
+<h3 style="color:red;"><%=flash[:incomplete]%></h3>
+<%end%>
 <form action="/dogs/new" method="post">
 <label for="dog[name]">Dog's Name:</label>
 <input type="text" name="dog[name]"><br>

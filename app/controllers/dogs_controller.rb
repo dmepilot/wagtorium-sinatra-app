@@ -5,21 +5,29 @@ class DogsController < ApplicationController
     end
 
     post '/dogs/new' do
-        new_dog=Dog.create(params[:dog])
+        new_dog=Dog.new(params[:dog])
         new_dog.owner_id=current_owner.id
-        new_dog.save
-        erb :'/owners/show'
+        if new_dog.save
+          erb :'/owners/show'
+        else
+          flash[:incomplete]="Please fill in all fields" 
+          redirect '/dogs/new'
+        end
     end
 
     get '/dogs/:id/edit' do
         @dog=Dog.find_by_id(params[:id])
-        erb :'/dogs/edit'
+        if @dog.owner_id == current_owner.id
+            #binding.pry
+            erb :'/dogs/edit'
+        else
+            redirect to("/owners/#{current_owner.slug}")
+        end
     end
 
     patch '/dogs/:id' do
         @dog = Dog.find_by_id(params[:id])
         @dog.update(params[:dog])
-        @dog.save
         redirect("/dogs/#{@dog.id}")
     end
     

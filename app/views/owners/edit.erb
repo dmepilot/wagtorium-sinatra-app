@@ -10,10 +10,11 @@
 <label for="password">Password:</label>
 <input type="password" name="owner[password]" value ="<%=current_owner.password%>"><br>
 <br>
+
+<button type="submit" name="submit" class="button-2">Update</button>
+</form>
 <%current_owner.dogs.each do |dog|%>
 <input type="checkbox" name="dogs[]" value="<%=dog.id%>" <%="checked" if current_owner.dogs.include?(dog) %>><%=dog.name%><button class="button-2"><a href="/dogs/<%="#{dog.id}"%>/edit">Edit</a></button>
 <br>
 <%end%>
 <button class="button-2"><a href="/dogs/new">Add New Dog</a></button><br><br>
-<button type="submit" name="submit" class="button-2">Update</button>
-</form>

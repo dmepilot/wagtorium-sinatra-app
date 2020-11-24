@@ -2,6 +2,8 @@ class Dog < ActiveRecord::Base
     belongs_to :owner
     has_many :appointments, through: :owner
 
+    validates :name, :breed,  presence: true
+
     def slug
         self.name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
     end
