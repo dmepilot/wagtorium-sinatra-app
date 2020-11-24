@@ -21,6 +21,7 @@
  <p>NOTES: <%=d.special_notes%></p>
  <%end%>
  </ul>
+
 <br>
 <h2></h2>
 <button class="button-2"><a href="/owners/<%="#{current_owner.slug}"%>/edit">Update Profile Info</a></button>
@@ -28,4 +29,10 @@
 <br>
 <%if current_owner.name == "Wagtorium Manager"%>
 <button class="button-3"><a href="/appointments/new">MANAGER CREATE NEW APPOINTMENTS!</a></button>
+ <h3>Your current booked appointments:</h3>
+    <%Appointment.all.each do |a|%>
+      <%if a.owner_id != nil %>
+      <%="#{a.date_time}"%><br>
+      <%end%>
+   <%end%>
 <%end%>
